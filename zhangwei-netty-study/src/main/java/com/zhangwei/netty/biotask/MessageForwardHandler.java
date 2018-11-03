@@ -1,5 +1,6 @@
-package com.zhangwei.netty.bio;
+package com.zhangwei.netty.biotask;
 
+import com.zhangwei.netty.bio.Calculator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -9,41 +10,40 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * 堵塞式I/O
+ * 聊天处理
  *
  * @author zhangwei10
- * @create 2018-11-03 2:30 PM
+ * @create 2018-11-03 2:12 PM
  * @since 1.0.0
  **/
 @Slf4j
-public class Client {
-    //默认的端口号
-    private static int DEFAULT_SERVER_PORT = 7777;
+public class MessageForwardHandler implements Runnable {
+    private Socket socket;
 
-    private static String DEFAULT_SERVER_IP = "127.0.0.1";
-
-    public static void send(String expression) {
-        send(DEFAULT_SERVER_PORT, expression);
+    public MessageForwardHandler(Socket socket) {
+        this.socket = socket;
     }
 
-    private static void send(int port, String expression) {
-        log.info("客服端开始发送消息：" + expression);
-        Socket socket = null;
-
+    @Override
+    public void run() {
         BufferedReader in = null;
         PrintWriter out = null;
         try {
-            socket = new Socket(DEFAULT_SERVER_IP, port);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
-            //注意不要写成print  接收和发送要使用相同的
-            out.println(expression);
-            log.info("结果为：" + in.readLine());
-
+            String message;
+            while (true) {
+                //通过BufferedReader读取一行
+                //如果已经读到输入流尾部，返回null,退出循环
+                //如果得到非空值，就尝试计算结果并返回
+                if ((message = in.readLine()) == null) break;
+                log.info(("服务端收到信息：" + message));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             log.info(e.getLocalizedMessage());
         } finally {
+            //关闭流
             if (in != null) {
                 try {
                     in.close();
@@ -56,6 +56,7 @@ public class Client {
             }
 
             if (out != null) {
+
                 out.close();
                 out = null;
 
@@ -71,7 +72,10 @@ public class Client {
                 socket = null;
 
             }
-
         }
+
+
     }
+
+
 }

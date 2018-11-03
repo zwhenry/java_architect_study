@@ -1,5 +1,7 @@
 package com.zhangwei.netty.bio;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -10,6 +12,7 @@ import java.util.Random;
  * @create 2018-11-03 2:41 PM
  * @since 1.0.0
  **/
+@Slf4j
 public class ZWTest {
     public static void main(String[] args) throws InterruptedException {
         new Thread(() -> {

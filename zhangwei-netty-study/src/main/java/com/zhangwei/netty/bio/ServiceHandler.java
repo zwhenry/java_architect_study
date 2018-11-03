@@ -37,14 +37,14 @@ public class ServiceHandler implements Runnable {
                 //如果已经读到输入流尾部，返回null,退出循环
                 //如果得到非空值，就尝试计算结果并返回
                 if ((expression = in.readLine()) == null) break;
-                System.out.println(("服务端收到信息：" + expression));
+                log.info(("服务端收到信息：" + expression));
 
                 result = Calculator.cal(expression);
                 out.println(result);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getLocalizedMessage());
+            log.info(e.getLocalizedMessage());
         } finally {
             //关闭流
             if (in != null) {
