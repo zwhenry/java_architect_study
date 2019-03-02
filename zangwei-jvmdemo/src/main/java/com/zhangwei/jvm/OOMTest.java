@@ -10,7 +10,10 @@ import java.util.Random;
  * @since 1.0.0
  **/
 public class OOMTest {
-
+    /**
+     * 运行参数 -Xmx1k -Xms1k -XX:+PrintGCDetails 打印GC详细信息
+     * @param args
+     */
     public static void main(String[] args) {
         String str = "www.google.com" ;
         while(true) {

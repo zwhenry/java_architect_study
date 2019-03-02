@@ -4,6 +4,14 @@ public class TryFinally {
 	public static void main(String[] args) {
 		System.out.println(f1());
 	}
+
+	/**
+	 * 反编译 命令 javap -verbose  StringAdd.class
+	 * 问题：最后返回的到底是 hello还是 gupao 为什么？
+	 * 返回hello
+	 */
+
+
 	/**
 	 public static java.lang.String f1();
     descriptor: ()Ljava/lang/String;

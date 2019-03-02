@@ -13,6 +13,12 @@ public class RefCountGC {
 
     private byte[] bigSize = new byte[2 * 1024 * 1024];
 
+    /**
+     * 运行参数 -verbose:gc -XX:+PrintGCDetails 打印GC详细信息
+     * 双向引用 删除应用之后回收了 证明没有使用引用计数法
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         RefCountGC obj1 = new RefCountGC();
         RefCountGC obj2 = new RefCountGC();

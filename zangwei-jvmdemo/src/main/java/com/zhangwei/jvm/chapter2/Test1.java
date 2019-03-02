@@ -3,10 +3,14 @@ package com.zhangwei.jvm.chapter2;
 public class Test1 {
 	public static void main(String args) {
 		int a=2;
-		int b=400;
+		int b=3;
 		int c = a + b;
 		System.out.println(c);
 	}
+	/**
+	 * 反编译 命令 javap -verbose  Test1.class
+	 */
+
 	/***
 	 public static void main(java.lang.String);
     descriptor: (Ljava/lang/String;)V
@@ -28,17 +32,22 @@ public class Test1 {
         11: iload_3
         12: invokevirtual #22                 // Method java/io/PrintStream.println:(I)V
         15: return
-      LineNumberTable:
+      LineNumberTable:  #前面 lin 5是代码中的行号 后面的数 对应反编译的号
         line 5: 0
         line 6: 2
         line 7: 4
         line 8: 8
         line 9: 15
-      LocalVariableTable:
+      LocalVariableTable: 本地变量表
         Start  Length  Slot  Name   Signature
             0      16     0  args   Ljava/lang/String;
             2      14     1     a   I
             4      12     2     b   I
             8       8     3     c   I
 	 **/
+
+	/**
+	 * Slot 巢位
+	 * Start 变量对应反编译的号
+	 */
 }

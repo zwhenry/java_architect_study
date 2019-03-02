@@ -5,6 +5,11 @@ public class StringAdd {
 	}
 
 	/**
+	 * 反编译 命令 javap -verbose  StringAdd.class
+	 *
+	 */
+
+	/**
 	 public static void f1();
     descriptor: ()V
     flags: ACC_PUBLIC, ACC_STATIC
