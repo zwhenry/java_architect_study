@@ -102,14 +102,14 @@ public class ZWDispatcherServlet extends HttpServlet {
                             String paramName = ((ZWRequestParam) a).value();
                             if (params.containsKey(paramName)) {
                                 //params.entrySet() op+enter  选择iteraor  快捷for循环
-                                for (Map.Entry<String, String[]> param : params.entrySet()) {
-                                    String value = Arrays.toString(param.getValue())
+//                                for (Map.Entry<String, String[]> param : params.entrySet()) {
+                                    String value = Arrays.toString(params.get(paramName))
                                             //数组去除前后缀
-                                            .replaceAll("\\[\\]", "")
+                                            .replaceAll("\\[|\\]", "")
                                             //空格换为逗号
                                             .replaceAll("\\s", ",");
                                     paramValues[i] = value;
-                                }
+//                                }
                             }
                         }
                     }
