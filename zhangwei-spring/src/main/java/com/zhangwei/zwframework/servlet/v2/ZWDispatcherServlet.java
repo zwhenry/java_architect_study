@@ -1,9 +1,6 @@
 package com.zhangwei.zwframework.servlet.v2;
 
-import com.zhangwei.zwframework.annotion.ZWAutowired;
-import com.zhangwei.zwframework.annotion.ZWController;
-import com.zhangwei.zwframework.annotion.ZWRequestMapping;
-import com.zhangwei.zwframework.annotion.ZWService;
+import com.zhangwei.zwframework.annotion.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -82,7 +80,44 @@ public class ZWDispatcherServlet extends HttpServlet {
         //获取方法的形参列表
         Class<?>[] parameterTypes = method.getParameterTypes();
 
-        method.invoke(ioc.get(beanName), new Object[]{req, resp, params.get("name")[0]});
+//        method.invoke(ioc.get(beanName), new Object[]{req, resp, params.get("name")[0]});
+
+
+        //动态参数
+        Object[] paramValues = new Object[parameterTypes.length];
+        for (int i = 0; i < parameterTypes.length; i++) {
+            Class parameterType = parameterTypes[i];
+            if (parameterType == HttpServletRequest.class) {
+                paramValues[i] = req;
+                continue;
+            } else if (parameterType == HttpServletResponse.class) {
+                paramValues[i] = resp;
+                continue;
+            } else if (parameterType == String.class) {
+                //获取所有方法的注解
+                Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+                for (int j = 0; j < parameterAnnotations.length; j++) {
+                    for (Annotation a : parameterAnnotations[j]) {
+                        if (a instanceof ZWRequestParam) {
+                            String paramName = ((ZWRequestParam) a).value();
+                            if (params.containsKey(paramName)) {
+                                //params.entrySet() op+enter  选择iteraor  快捷for循环
+                                for (Map.Entry<String, String[]> param : params.entrySet()) {
+                                    String value = Arrays.toString(param.getValue())
+                                            //数组去除前后缀
+                                            .replaceAll("\\[\\]", "")
+                                            //空格换为逗号
+                                            .replaceAll("\\s", ",");
+                                    paramValues[i] = value;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        method.invoke(ioc.get(beanName), paramValues);
 
     }
 
