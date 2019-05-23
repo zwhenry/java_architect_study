@@ -5,12 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhangwei</groupId>
-    <artifactId>zhangwei-observer</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+    <artifactId>zhangwei-algorithm</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
 
 </project>

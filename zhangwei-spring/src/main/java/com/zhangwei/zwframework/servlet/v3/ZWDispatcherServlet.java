@@ -30,12 +30,12 @@ public class ZWDispatcherServlet extends HttpServlet {
 
     private Properties p = new Properties();
 
-    private List<String> classNames = new ArrayList<String>();
+    private List<String> classNames = new ArrayList<>();
 
-    private Map<String,Object> ioc = new HashMap<String,Object>();
+    private Map<String,Object> ioc = new HashMap<>();
 
     //保存所有的Url和方法的映射关系
-    private List<Handler> handlerMapping = new ArrayList<Handler>();
+    private List<Handler> handlerMapping = new ArrayList<>();
 
     public ZWDispatcherServlet(){ super(); }
 
@@ -329,7 +329,7 @@ public class ZWDispatcherServlet extends HttpServlet {
         //保存映射的方法
         protected Method method;
         protected Pattern pattern;
-        //参数顺序
+        //参数顺序 形参列表 参数名字为key 参数位置为值
         protected Map<String,Integer> paramIndexMapping;
 
         /**
@@ -342,7 +342,7 @@ public class ZWDispatcherServlet extends HttpServlet {
             this.method = method;
             this.pattern = pattern;
 
-            paramIndexMapping = new HashMap<String,Integer>();
+            paramIndexMapping = new HashMap<>();
             putParamIndexMapping(method);
         }
 
