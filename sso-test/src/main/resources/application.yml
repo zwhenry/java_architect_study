@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+#模板配置
+spring:
+  application:
+    name: sso-test
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+
+sso:
+  config:
+    login-url: http://dev-sso.danke.life/staff/login
+    client-id: test
+    exclude-paths: /api;/index;
+    redis:
+      host: 172.18.11.16
+      port: 6379
+
