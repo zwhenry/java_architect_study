@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>zhangwei-prototype</module>
-        <module>zhangwei-singleton</module>
+        <!--<module>zhangwei-prototype</module>
+        <module>zhangwei-singleton</module>-->
         <module>zhangwei-pattern-prototype</module>
         <module>zhangwei-pattern-singleton</module>
         <module>zhangwei-pattern-proxy</module>

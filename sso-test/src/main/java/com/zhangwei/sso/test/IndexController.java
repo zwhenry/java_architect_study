@@ -1,7 +1,7 @@
 package com.zhangwei.sso.test;
 
 import com.danke.commons.sso.entity.SsoPrincipal;
-import com.danke.commons.sso.entity.SsoUserInfo;
+import com.danke.commons.sso.entity.SsoUserPrincipal;
 import com.danke.commons.sso.entity.SsoUserPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +33,7 @@ public class IndexController {
         SsoUserPrincipal b= (SsoUserPrincipal) request.getUserPrincipal();
         model.addAttribute("test", b.getUserId());
 
-        SsoUserInfo c = (SsoUserInfo) b;
+        SsoUserPrincipal c = (SsoUserPrincipal) request.getUserPrincipal();
         model.addAttribute("test", c.getUserId());
 
 
